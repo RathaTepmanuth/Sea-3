@@ -379,7 +379,7 @@ local v16 = {
         Title = "Main"
     }),
     Sea = v15:AddTab({
-        Title = "Sự Kiện"
+        Title = "Sea"
     }),
     ITM = v15:AddTab({
         Title = "Item"
@@ -7549,7 +7549,7 @@ if Sea3 then
                 elseif (v811 == 0) then
                     v561:SetDesc("I Don't Know");
                 else
-                    v561:SetDesc("Mua: " .. tostring(v811));
+                    v561:SetDesc("First: " .. tostring(v811));
                 end
             end
         end);
@@ -7574,7 +7574,7 @@ spawn(function()
     end
 end);
 local v158 = v16.Sea:AddToggle("ToggleReceiveQuest", {
-    Title = "Get quest blazeEmber",
+    Title = "Get quest",
     Description = "",
     Default = false
 });
@@ -7719,7 +7719,7 @@ v156:AddButton({
     end
 });
 local v164 = v16.Sea:AddToggle("ToggleCollectFireFlowers", {
-    Title = "Lụm Hoa Đỏ",
+    Title = "Collect fireflower",
     Description = "",
     Default = false
 });
@@ -7809,9 +7809,9 @@ spawn(function()
     pcall(function()
         while wait() do
             if ggame:GetService("Workspace").Map:FindFirstChild("PrehistoricIsland") then
-                v169:SetDesc("Đảo Dung Nham: ✅️");
+                v169:SetDesc("Status: ✅️");
             else
-                v169:SetDesc("Đảo Dung Nham: ❌️");
+                v169:SetDesc("Status: ❌️");
             end
         end
     end);
