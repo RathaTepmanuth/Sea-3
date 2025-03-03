@@ -5688,6 +5688,260 @@ if (Sea2 or Sea3) then
         end
     end);
 end
+v16.Race:AddButton({
+    Title = "Tp temple of time",
+    Description = "",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(28286.35546875, 14895.3017578125, 102.62469482421875));
+    end
+});
+v16.Race:AddButton({
+    Title = "Tp Entrance",
+    Description = "",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(28286.35546875, 14895.3017578125, 102.62469482421875));
+        Tween2(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734));
+    end
+});
+v16.Race:AddButton({
+    Title = "Tp upgrade gear",
+    Description = "",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(28286.35546875, 14895.3017578125, 102.62469482421875));
+        Tween2(CFrame.new(28981.552734375, 14888.4267578125, - 120.245849609375));
+    end
+});
+local v56 = v16.Race:AddSection("race door");
+v16.Race:AddButton({
+    Title = "Teleport to race door",
+    Description = "",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(28286.35546875, 14895.3017578125, 102.62469482421875));
+        if (game:GetService("Players").LocalPlayer.Data.Race.Value == "Human") then
+            Tween2(CFrame.new(29221.822265625, 14890.9755859375, - 205.99114990234375));
+        elseif (game:GetService("Players").LocalPlayer.Data.Race.Value == "Skypiea") then
+            Tween2(CFrame.new(28960.158203125, 14919.6240234375, 235.03948974609375));
+        elseif (game:GetService("Players").LocalPlayer.Data.Race.Value == "Fishman") then
+            Tween2(CFrame.new(28231.17578125, 14890.9755859375, - 211.64173889160156));
+        elseif (game:GetService("Players").LocalPlayer.Data.Race.Value == "Cyborg") then
+            Tween2(CFrame.new(28502.681640625, 14895.9755859375, - 423.7279357910156));
+        elseif (game:GetService("Players").LocalPlayer.Data.Race.Value == "Ghoul") then
+            Tween2(CFrame.new(28674.244140625, 14890.6767578125, 445.4310607910156));
+        elseif (game:GetService("Players").LocalPlayer.Data.Race.Value == "Mink") then
+            Tween2(CFrame.new(29012.341796875, 14890.9755859375, - 380.1492614746094));
+        end
+    end
+});
+local v144 = v16.Race:AddToggle("ToggleHumanandghoul", {
+    Title = "Complete level [Human/Ghoul]",
+    Description = "",
+    Default = false
+});
+v144:OnChanged(function(v361)
+    KillAura = v361;
+end);
+v17.ToggleHumanandghoul:SetValue(false);
+local v145 = v16.Race:AddToggle("ToggleAutotrial", {
+    Title = "Auto Trial",
+    Description = "",
+    Default = false
+});
+v145:OnChanged(function(v362)
+    _G.AutoQuestRace = v362;
+end);
+v17.ToggleAutotrial:SetValue(false);
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.AutoQuestRace then
+                if (game:GetService("Players").LocalPlayer.Data.Race.Value == "Human") then
+                    for v1123, v1124 in pairs(game.Workspace.Enemies:GetDescendants()) do
+                        if (v1124:FindFirstChild("Humanoid") and v1124:FindFirstChild("HumanoidRootPart") and (v1124.Humanoid.Health > 0)) then
+                            pcall(function()
+                                repeat
+                                    wait();
+                                    v1124.Humanoid.Health = 0;
+                                    v1124.HumanoidRootPart.CanCollide = false;
+                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge);
+                                until not _G.AutoQuestRace or not v1124.Parent or (v1124.Humanoid.Health <= 0)
+                            end);
+                        end
+                    end
+                elseif (game:GetService("Players").LocalPlayer.Data.Race.Value == "Skypiea") then
+                    for v1470, v1471 in pairs(game:GetService("Workspace").Map.SkyTrial.Model:GetDescendants()) do
+                        if (v1471.Name == "snowisland_Cylinder.081") then
+                            BTPZ(v1471.CFrame * CFrame.new(0, 0, 0));
+                        end
+                    end
+                elseif (game:GetService("Players").LocalPlayer.Data.Race.Value == "Fishman") then
+                    for v1582, v1583 in pairs(game:GetService("Workspace").SeaBeasts.SeaBeast1:GetDescendants()) do
+                        if (v1583.Name == "HumanoidRootPart") then
+                            Tween(v1583.CFrame * Pos);
+                            for v1746, v1747 in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                if v1747:IsA("Tool") then
+                                    if (v1747.ToolTip == "Melee") then
+                                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v1747);
+                                    end
+                                end
+                            end
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 122, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 122, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            wait(0.2);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 120, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 120, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            wait(0.2);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 99, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 99, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            for v1748, v1749 in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                if v1749:IsA("Tool") then
+                                    if (v1749.ToolTip == "Blox Fruit") then
+                                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v1749);
+                                    end
+                                end
+                            end
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 122, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 122, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            wait(0.2);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 120, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 120, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            wait(0.2);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 99, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 99, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            wait();
+                            for v1750, v1751 in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                if v1751:IsA("Tool") then
+                                    if (v1751.ToolTip == "Sword") then
+                                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v1751);
+                                    end
+                                end
+                            end
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 122, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 122, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            wait(0.2);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 120, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 120, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            wait(0.2);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 99, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 99, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            wait();
+                            for v1752, v1753 in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                if v1753:IsA("Tool") then
+                                    if (v1753.ToolTip == "Gun") then
+                                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(v1753);
+                                    end
+                                end
+                            end
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 122, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 122, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            wait(0.2);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 120, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 120, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            wait(0.2);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(true, 99, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                            game:GetService("VirtualInputManager"):SendKeyEvent(false, 99, false, game.Players.LocalPlayer.Character.HumanoidRootPart);
+                        end
+                    end
+                elseif (game:GetService("Players").LocalPlayer.Data.Race.Value == "Cyborg") then
+                    Tween(CFrame.new(28654, 14898.7832, - 30, 1, 0, 0, 0, 1, 0, 0, 0, 1));
+                elseif (game:GetService("Players").LocalPlayer.Data.Race.Value == "Ghoul") then
+                    for v1764, v1765 in pairs(game.Workspace.Enemies:GetDescendants()) do
+                        if (v1765:FindFirstChild("Humanoid") and v1765:FindFirstChild("HumanoidRootPart") and (v1765.Humanoid.Health > 0)) then
+                            pcall(function()
+                                repeat
+                                    wait();
+                                    v1765.Humanoid.Health = 0;
+                                    v1765.HumanoidRootPart.CanCollide = false;
+                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge);
+                                until not _G.AutoQuestRace or not v1765.Parent or (v1765.Humanoid.Health <= 0)
+                            end);
+                        end
+                    end
+                elseif (game:GetService("Players").LocalPlayer.Data.Race.Value == "Mink") then
+                    for v1790, v1791 in pairs(game:GetService("Workspace"):GetDescendants()) do
+                        if (v1791.Name == "StartPoint") then
+                            Tween(v1791.CFrame * CFrame.new(0, 10, 0));
+                        end
+                    end
+                end
+            end
+        end
+    end);
+end);
+local v146 = v16.Race:AddToggle("ToggleKillTrial", {
+    Title = "Auto kill player",
+    Description = "",
+    Default = false
+});
+v146:OnChanged(function(v363)
+    _G.AutoKillTrial = v363;
+end);
+v17.ToggleKillTrial:SetValue(false);
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoKillTrial then
+                for v870, v871 in pairs(game:GetService("Players"):GetChildren()) do
+                    if (v871.Name and (v871.Name ~= game.Players.LocalPlayer.Name) and ((v871.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100)) then
+                        if (v871.Character.Humanoid.Health > 0) then
+                            repeat
+                                wait(_G.Fast_Delay);
+                                EquipTool(SelectWeapon);
+                                AutoHaki();
+                                Tween(v871.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 5));
+                                v871.Character.HumanoidRootPart.CanCollide = false;
+                                v871.Character.HumanoidRootPart.Size = Vector3.new(60, 60, 60);
+                                AttackNoCoolDown();
+                            until not _G.AutoKillTrial or not v871.Parent or (v871.Character.Humanoid.Health <= 0)
+                        end
+                    end
+                end
+            end
+        end);
+    end
+end);
+local v56 = v16.Race:AddSection("Train");
+local v147 = v16.Race:AddToggle("ToggleFarmRace", {
+    Title = "auto farm race",
+    Description = "",
+    Default = false
+});
+local v148 = false;
+v147:OnChanged(function(v364)
+    v148 = v364;
+end);
+v17.ToggleFarmRace:SetValue(false);
+spawn(function()
+    while wait() do
+        if v148 then
+            pcall(function()
+                if game.Players.LocalPlayer.Character:FindFirstChild("RaceTransformed") then
+                    if (game.Players.LocalPlayer.Character.RaceTransformed.Value == true) then
+                        _G.AutoBoneNoQuest = false;
+                        Tween(CFrame.new(- 9698.4736328125, 445.09442138671875, 6545.8525390625));
+                    elseif (game.Players.LocalPlayer.Character.RaceTransformed.Value == false) then
+                        _G.AutoBoneNoQuest = true;
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true, "Y", false, game);
+                        wait();
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false, "Y", false, game);
+                    end
+                end
+            end);
+        else
+            _G.AutoBoneNoQuest = false;
+        end
+    end
+end);
+local v149 = v16.Race:AddToggle("ToggleUpgrade", {
+    Title = "Upgrade Gear",
+    Description = "",
+    Default = false
+});
+v149:OnChanged(function(v365)
+    _G.AutoUpgrade = v365;
+    if _G.AutoUpgrade then
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("UpgradeRace", "Buy");
+    end
+end);
 
 local v85 = v16.Setting:AddToggle("ToggleAutoT", {
     Title = "auto race V3",
