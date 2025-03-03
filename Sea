@@ -7858,7 +7858,7 @@ v158:OnChanged(function(v388)
     end
 end);
 local v159 = v16.Sea:AddParagraph({
-    Title = "blaze check",
+    Title = "auto quest dragon hunter",
     Content = ""
 });
 spawn(function()
@@ -8004,7 +8004,7 @@ spawn(function()
     end
 end);
 local v165 = v16.Sea:AddToggle("ToggleWhiteBelt", {
-    Title = "White belt",
+    Title = "auto white belt",
     Description = "",
     Default = false
 });
@@ -8033,7 +8033,7 @@ v165:OnChanged(function(v397)
     end
 end);
 local v166 = v16.Sea:AddParagraph({
-    Title = "auto Complete Draco V4 (Sớm Ra)",
+    Title = "auto Complete Draco V4 (Soon)",
     Content = ""
 });
 local v167 = v16.Sea:AddToggle("ToggleTrialTeleport", {
